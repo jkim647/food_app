@@ -55,7 +55,7 @@ class Report extends React.Component<IFoodProps,IState>{
                 {recipes.map((recipe:any,i) => {
                     return (
                        
-                        <div key={i} className="col-md-4 c">
+                        <div key={i} className="col-md-4 c myRecipe">
                             <div className="plain-box">
                                 <div>
                                     <h5 className="text">{recipe.recipe.label}</h5>

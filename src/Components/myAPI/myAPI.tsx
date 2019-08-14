@@ -8,7 +8,10 @@ import CreateRecipe from '../createRecipe/createRecipe'
 import EditRecipeModal from '../myRecipeModal/editRecipeModal'
 import SearchBar_two from '../searchBar_two/searchBar_two'
 // import Loader from 'react-loader-spinner'
-
+import Backdrop from '../backdrop/backdrop'
+interface IProps{
+    auth:any
+}
 interface IState{
     lists:any[],
     ingredients:string,
@@ -20,7 +23,7 @@ interface IState{
     
   }
 
-class MyAPI extends React.Component<{}, IState> {
+class MyAPI extends React.Component<IProps, IState> {
 
     public constructor(props: any) {
         super(props);
@@ -94,10 +97,12 @@ class MyAPI extends React.Component<{}, IState> {
                 // Error State
                 alert(response.statusText)
                 this.updateList()
+                this.props.auth()
             } else {
-                location.reload()
+               alert("Done")
+               this.componentDidMount()
             }
-        })
+       })
 
     }
 
@@ -159,9 +164,11 @@ class MyAPI extends React.Component<{}, IState> {
                 
                 <Myrecipe recipeList={this.state.lists} delete={this.deleteRecipe} edit={this.selectCurrentRecipe} />
                 { /* <EditRecipe edit={this.editRecipe} /> */}
-                {this.state.openCreateRecipeModal &&<CreateRecipe add={this.uploadList} close={this.closeCreateRecipe}/>}
-                {this.state.openEditModal &&<EditRecipeModal editRecipe={this.state.currentRecipe} closeModal={this.closeEditModal}/>}
 
+                {this.state.openCreateRecipeModal &&<CreateRecipe add={this.uploadList} close={this.closeCreateRecipe}/>}
+                
+                {this.state.openEditModal &&<EditRecipeModal editRecipe={this.state.currentRecipe} closeModal={this.closeEditModal} update={this.updateList}/>}
+                {this.state.openEditModal || this.state.openCreateRecipeModal &&<Backdrop />}
                 
 
             </div>

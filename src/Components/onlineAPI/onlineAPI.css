@@ -11,7 +11,7 @@
 .searchBar-content{
     max-width: 1280px;
     width:100%;
-    background: black;
+    background: white;
     margin:0 auto;
     border-radius:40px;
     position: relative;
@@ -28,12 +28,12 @@
 .searchbar-input{
     font-size:38;
     position: absolute;;
-    left:70px;
+    left:80px;
     top:7px;
     border: 0;
     background:transparent;
     height: 40px;
-    color:#fff;
+    color:#e67e22;
 }
 .c{
     margin-top:30px;

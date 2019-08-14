@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './myRecipe.css'
 
 
 
@@ -35,11 +36,11 @@ class MyRecipe extends React.Component<ILoveprops, IState> {
         }
     public render() {
         return (
-            <div>
+            <div className="row ">
                  {this.props.recipeList.map((recipe:any,i) => {
                     return (
                        
-                        <div key={i} className="col-md-4 c">
+                        <div key={i} className="col-md-4 c myRecipe">
                             <div className="plain-box">
                                 <div>
                                     <h4 className="text">{recipe.title}</h4>

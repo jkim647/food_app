@@ -1,6 +1,7 @@
 import * as React from 'react';
 import FontAwesome from 'react-fontawesome'
 import VoiceIcon from './voiceIcon'
+import './searchbar.css'
 // import { IconButton } from '@material-ui/core';
 
 interface ISearchProps{
@@ -51,7 +52,7 @@ class OnlineAPI extends React.Component<ISearchProps, IState>{
            
             
             <FontAwesome onClick={this.doSearch} className="fa-search" name="search" size="2x"/>
-            <VoiceIcon searchVoice={this.voiceSearch}/>
+            <VoiceIcon  searchVoice={this.voiceSearch}/>
            
          
            </div>

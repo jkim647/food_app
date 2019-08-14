@@ -54,9 +54,7 @@ public startOnlineApi = () => {
   }
   
 
-
-
-  
+ 
 
 
   public render() {
@@ -82,7 +80,7 @@ public startOnlineApi = () => {
         {(authenticated)? 
           <div><Heads open={this.startOnlineApi} openMine={this.startMyApi}/>
             {this.state.openOnlineApi&& <OnlineAPI />}
-            {this.state.openMyApi&&<MyAPI />}</div>:""}
+            {this.state.openMyApi&&<MyAPI auth={this.NoAuthenticate} />}</div>:""}
           
       </div>
     </div>

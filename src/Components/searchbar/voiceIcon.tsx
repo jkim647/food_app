@@ -1,7 +1,7 @@
 import * as React from 'react';
 import MediaStreamRecorder from 'msr';
 import FontAwesome from 'react-fontawesome'
-
+import './voiceIcon.css'
 interface ISearchProps{
     searchVoice:any
   
@@ -93,9 +93,9 @@ interface ISearchProps{
 
     public render() {
         return (
-            <div>
+            <span className="voiceIcon">
                  <FontAwesome onClick={this.searchTagByVoice} name="microphone" size="2x"/>
-            </div>
+            </span>
         )
     }
 }

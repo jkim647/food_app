@@ -1,9 +1,11 @@
 import * as React from 'react';
-
+import './editRecipeModal.css'
+// import Backdrop from '../backdrop/backdrop'
 interface IProps {
     
     editRecipe:any
     closeModal:any
+    update:any
 }
 
 interface IState {
@@ -38,7 +40,9 @@ class MyRecipeModal extends React.Component<IProps, IState> {
             // Error State
             alert(response.statusText + "!! ")
           } else {
-            location.reload()
+              this.props.update()
+            alert("Done")
+            
           }
           })
         
@@ -47,20 +51,22 @@ class MyRecipeModal extends React.Component<IProps, IState> {
 
    public  render() {
         return (
-            <form>
-                        <div className="form-group">
+            <form className="makeForm">
+                        <div className="form-group ">
                             <h4>{this.props.editRecipe.title}</h4>
-                            <label>Calories</label>
+                            <label className="calories_text">Calories</label>
                             <input type="text" className="form-control" id="edit-Calories" placeholder="Enter Calories"/>
                             <small className="form-text text-muted">You can edit Calories</small>
                         </div>
                         <div className="form-group">
-                            <label>Ingredients</label>
-                            <input type="text" className="form-control" id="edit-ingredients" placeholder="Enter Ingredients"/>
+                            <label className="ing_text">Ingredients</label>
+                            <input type="text" className="form-control ingredients" id="edit-ingredients" placeholder="Enter Ingredients"/>
                             <small className="form-text text-muted">You can edit Ingredients</small>
                         </div>
                         <button type="button" className="btn" onClick={this.editRecipe}>Save</button>
                         <button type="button" className="btn" onClick={this.props.closeModal}>Cancel</button>
+                        
+
                     </form>
         )
     }

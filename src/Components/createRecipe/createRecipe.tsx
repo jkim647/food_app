@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import './createRecipe.css'
 const sideDrawer = (props:any) => (
 
 
@@ -8,7 +8,7 @@ const sideDrawer = (props:any) => (
 
     <div className="col-md-4 c">
 
-        <form >
+        <form className="makeForm">
 
             <div className="form-group">
 
@@ -37,9 +37,9 @@ const sideDrawer = (props:any) => (
 
             </div>
 
-            <button type="button" className="btn btn-warning" onClick ={props.add}>Submit</button>
+            <button type="button" className="btn" onClick ={props.add}>Submit</button>
 
-            <button type="button" className="btn btn-warning" onClick ={props.close}>Cancel</button>
+            <button type="button" className="btn" onClick ={props.close}>Cancel</button>
 
             
 
