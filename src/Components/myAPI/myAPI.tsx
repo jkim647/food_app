@@ -6,6 +6,8 @@ import CreateRecipe from '../createRecipe/createRecipe'
 // import SearchBar from '../searchbar/searchbar'
 // import EditRecipe from '../editRecipe/editRecipe'
 import EditRecipeModal from '../myRecipeModal/editRecipeModal'
+import SearchBar_two from '../searchBar_two/searchBar_two'
+// import Loader from 'react-loader-spinner'
 
 interface IState{
     lists:any[],
@@ -13,6 +15,8 @@ interface IState{
     currentRecipe:any
     openEditModal: boolean
     openCreateRecipeModal:boolean
+    result: any
+    loading:boolean
     
   }
 
@@ -24,8 +28,10 @@ class MyAPI extends React.Component<{}, IState> {
         currentRecipe:{"foodId":0,"title":"Loading","cal":"0","ingredients":""},
         ingredients: '',
          lists:[],
+         loading: true,
          openCreateRecipeModal:false,
          openEditModal:false,
+         result:''
         
          
          
@@ -99,7 +105,7 @@ class MyAPI extends React.Component<{}, IState> {
         fetch('https://foodlove.azurewebsites.net//api/Foods',{method:'GET'}).
         then(res=>res.json())
         .then(json =>{
-            this.setState({lists:json})
+            this.setState({lists:json,loading: false})
             console.log(this.state.lists)
             
 
@@ -119,19 +125,41 @@ class MyAPI extends React.Component<{}, IState> {
         this.updateList()
         
     }
+
+  
+        public searchRecipe = async (searchItem:any) => {
+        console.log(searchItem)
+        this.setState({
+            lists: []
+        })
+        fetch("https://foodlove.azurewebsites.net//api/Foods/SearchByVideoName/"+ searchItem,{
+            headers:{
+                Accept: "text/plain"
+            },
+            method:"GET"
+        }).then(response=>response.json()).then(answer =>{
+            console.log(answer)
+            this.setState({lists:answer})
+        }
+        );
+        
+        
+      
+        
+     
+   }
     
     public render() {
         return (
             <div>
                 <div className="addRecipe">
-                
+                <SearchBar_two search={this.searchRecipe}/>
                 <FontAwesome onClick={this.openCreateRecipe} className="plusFont" name="plus" size="2x"/>
                 </div>
+                
                 <Myrecipe recipeList={this.state.lists} delete={this.deleteRecipe} edit={this.selectCurrentRecipe} />
                 { /* <EditRecipe edit={this.editRecipe} /> */}
                 {this.state.openCreateRecipeModal &&<CreateRecipe add={this.uploadList} close={this.closeCreateRecipe}/>}
-
-
                 {this.state.openEditModal &&<EditRecipeModal editRecipe={this.state.currentRecipe} closeModal={this.closeEditModal}/>}
 
                 

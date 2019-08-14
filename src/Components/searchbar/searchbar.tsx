@@ -23,6 +23,7 @@ class OnlineAPI extends React.Component<ISearchProps, IState>{
       }
 
    public doSearch = () =>{
+      console.log("doSearch")
       console.log(this.state.input)
       this.props.getReports(this.state.input)
    }

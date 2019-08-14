@@ -4,6 +4,7 @@ import foodLogo from "./logo.png";
 
 interface IProps{
     open: (event: React.MouseEvent<HTMLButtonElement>) => void
+    openMine: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 interface IState{
     
@@ -32,7 +33,7 @@ export default class Header extends React.Component<IProps,IState>{
                     <h1>Welcome to FoodRecipe</h1>
                     
                     <button className="btn btn-full js--scroll-to-plans" onClick={this.props.open}>Online Recipe</button>
-                    <a className="btn btn-ghost js--scroll-to-start" href="#">Show mine</a>
+                    <button className="btn btn-ghost js--scroll-to-start" onClick={this.props.openMine}>Show mine</button>
                 </div>
             </div>
         )

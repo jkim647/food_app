@@ -20,12 +20,13 @@ interface ISearchProps{
             voiceText:''
           }
         }
+
         public postAudio = (blob:any) => {
             fetch('https://westus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=en-US', {
                 body: blob, // this is a .wav audio file    
                 headers: {
                     'Accept': 'application/json',
-                    'Authorization': 'Bearer' + window.localStorage.getItem("key"),
+                    'Authorization': 'Bearer' + window.localStorage.getItem("keys"),
                     'Content-Type': 'audio/wav;codec=audio/pcm; samplerate=16000',
                     'Ocp-Apim-Subscription-Key': '7adbab792b34492ab4b0e6ba3886c66e'
                 },    
@@ -75,7 +76,8 @@ interface ISearchProps{
         }).then((response) => {
             return response.text()
         }).then((response) => {
-            window.localStorage.setItem("Key", response)
+            console.log(response)
+            window.localStorage.setItem("Keys", response)
     
             
         }).catch((error) => {

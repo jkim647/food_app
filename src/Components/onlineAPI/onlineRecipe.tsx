@@ -43,7 +43,9 @@ class Report extends React.Component<IFoodProps,IState>{
     }
     
     public render(){
+        console.log("rerendering onlineRecipe")
         const recipes= this.props.recipe
+        console.log(recipes)
         return(
             <div>
             {this.state.creating && <Modal ingredients={this.state.ingredients} title={this.state.title} onCancel={this.cancelModalBackdrop}/>}

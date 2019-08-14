@@ -7,6 +7,8 @@ declare module '*.bmp'
 declare module '*.tiff'
 declare module 'react-fontawesome'
 declare module 'msr'
+declare module 'react-loader-spinner'
+declare module 'react-firebase'
 declare module "*.png" {
     const content: string;
     export default content;
