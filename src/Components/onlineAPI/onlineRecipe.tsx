@@ -15,6 +15,7 @@ interface IState{
     title: string;
     cals: number;
     save:boolean;
+    url: string;
 
 }
 
@@ -28,7 +29,8 @@ class Report extends React.Component<IFoodProps,IState>{
            ingredients: [],
            title:'',
            cals:0,
-           save:false
+           save:false,
+           url:''
 
           
            }
@@ -37,13 +39,13 @@ class Report extends React.Component<IFoodProps,IState>{
         }
         
 
-    public startCreateEvent = (labels:any, titles:any, calories:any) =>{
+    public startCreateEvent = (labels:any, titles:any, calories:any,  urls:any) =>{
         
          this.setState({creating: true});
          this.setState({ingredients:labels})
          this.setState({title: titles})
          this.setState({cals: calories})
-         
+         this.setState({url: urls})
     }
 
     public saveInMyFolder = (labels:any, titles:any, calories:any) =>{
@@ -67,7 +69,7 @@ class Report extends React.Component<IFoodProps,IState>{
         console.log(recipes)
         return(
             <div>
-            {this.state.creating && <Modal ingredients={this.state.ingredients} title={this.state.title} onCancel={this.cancelModalBackdrop}/>}
+            {this.state.creating && <Modal ingredients={this.state.ingredients} title={this.state.title} onCancel={this.cancelModalBackdrop} address={this.state.url}/>}
             <div className="row c">
             
                 
@@ -80,7 +82,7 @@ class Report extends React.Component<IFoodProps,IState>{
                             <div className="plain-box">
                                 <div>
                                     <h5 className="text">{recipe.recipe.label}</h5>
-                                    <p>{i}</p>
+                                    
                                 </div>
 
                                 <div>
@@ -89,8 +91,8 @@ class Report extends React.Component<IFoodProps,IState>{
                                     src={recipe.recipe.image} alt={recipe.title}/>
                                 </div>
 
-                                <button className="view" onClick={()=>this.startCreateEvent(recipe.recipe.ingredients, recipe.recipe.label, recipe.recipe.calories)}>View Recipe</button> 
-                                <button className="view" onClick={()=>this.startCreateEvent(recipe.recipe.ingredients, recipe.recipe.label, recipe.recipe.calories)}>save in my folder</button>
+                                <button className="view" onClick={()=>this.startCreateEvent(recipe.recipe.ingredients, recipe.recipe.label, recipe.recipe.calories,recipe.recipe.url)}>View Recipe</button> 
+                                
                                
                                 <FacebookShareButton
                                     className="shareIcon"

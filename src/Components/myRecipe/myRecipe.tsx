@@ -3,6 +3,7 @@ import './myRecipe.css'
 
 
 
+
 interface ILoveprops{
     recipeList:any[];
     delete:any
@@ -52,7 +53,7 @@ class MyRecipe extends React.Component<ILoveprops, IState> {
 
                                 <button className="view" onClick={()=>this.selectRow(i)}>Edit</button> 
                                 <button className="view" onClick={()=>this.props.delete(recipe.foodId)}>Delete</button> 
-                                
+                                {}
                             </div>  
                         </div>
                         
