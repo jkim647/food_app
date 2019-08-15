@@ -2,6 +2,7 @@ import * as React from 'react';
 import './onlineRecipe.css'
 import Modal from '../modal/modal'
 import Backdrop from '../backdrop/backdrop'
+import { Twitter, FacebookShareButton } from 'react-social-sharing'
 
 interface IFoodProps{
     recipe:any[];
@@ -69,7 +70,8 @@ class Report extends React.Component<IFoodProps,IState>{
                                 </div>
 
                                 <button className="view" onClick={()=>this.startCreateEvent(recipe.recipe.ingredients, recipe.recipe.label)}>View Recipe</button> 
-                                
+                                <Twitter link="https://www.youtube.com/watch?v=0BzWRnP9S4Y"/>
+                                <FacebookShareButton link="https://www.youtube.com/watch?v=0BzWRnP9S4Y" />
                             </div>
                         </div>
                         

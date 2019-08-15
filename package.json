@@ -5,6 +5,8 @@
     "dependencies": {
         "@material-ui/core": "^4.3.1",
         "@material-ui/icons": "^4.0.1",
+        "@types/googlemaps": "^3.37.4",
+        "@types/markerclustererplus": "^2.1.33",
         "@types/react-webcam": "^1.1.0",
         "firebase": "^6.3.5",
         "msr": "^1.3.4",
@@ -13,10 +15,12 @@
         "react-firebase": "^2.2.8",
         "react-firebaseui": "^4.0.0",
         "react-fontawesome": "^1.6.1",
+        "react-google-maps": "^9.4.5",
         "react-loader-spinner": "^3.1.2",
         "react-media": "^1.9.2",
         "react-player": "^1.11.1",
         "react-scripts-ts": "3.1.0",
+        "react-social-sharing": "^3.0.1",
         "react-spinners": "^0.5.13",
         "react-webcam": "^1.1.1"
     },

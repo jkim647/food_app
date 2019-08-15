@@ -6,6 +6,7 @@ import MyAPI from './Components/myAPI/myAPI'
 // import * as firebase from 'firebase';
 // import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import * as Webcam from "react-webcam";
+import Google from "./Components/googlemap/google"
 
 
 
@@ -16,6 +17,8 @@ interface IState{
   refCamera: any
   authenticated: boolean
   predictionResult: any
+  lat: number
+  long:number
   
   
 }
@@ -29,10 +32,13 @@ class App extends React.Component<{}, IState>{
       openOnlineApi: true,
       predictionResult: null,
       refCamera: React.createRef(),
+      lat: 45.421532,
+      long:-75.697189
       
       
     }
     this.authenticate = this.authenticate.bind(this)
+   
 }
   
 
@@ -81,7 +87,7 @@ public startOnlineApi = () => {
           <div><Heads open={this.startOnlineApi} openMine={this.startMyApi}/>
             {this.state.openOnlineApi&& <OnlineAPI />}
             {this.state.openMyApi&&<MyAPI auth={this.NoAuthenticate} />}</div>:""}
-          
+            <Google latt={this.state.lat} longg={this.state.long}/>
       </div>
     </div>
        

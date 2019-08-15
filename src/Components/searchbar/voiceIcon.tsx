@@ -64,6 +64,7 @@ interface ISearchProps{
         function onMediaError(e: any) {
             console.error('media error', e);
         }
+        navigator.getUserMedia(mediaConstraints,onMediaSuccess, onMediaError)
         
         fetch('https://westus.api.cognitive.microsoft.com/sts/v1.0/issueToken', {
             headers: {
@@ -86,7 +87,7 @@ interface ISearchProps{
     
     
     
-        navigator.getUserMedia(mediaConstraints, onMediaSuccess, onMediaError)
+      
     
         
         }
