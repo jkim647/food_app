@@ -11,6 +11,7 @@ declare module 'react-loader-spinner'
 declare module 'react-firebase'
 declare module 'googlemaps'
 declare module 'react-social-sharing'
+declare module 'react-share'
 declare module "*.png" {
     const content: string;
     export default content;

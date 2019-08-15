@@ -45,7 +45,7 @@ class MyRecipe extends React.Component<ILoveprops, IState> {
                                 <div>
                                     <h4 className="text">{recipe.title}</h4>
                                     <p>{recipe.ingredients}</p>
-                                    <p>{recipe.cal}</p>
+                                    <p>Calories: {recipe.cal}</p>
                                 </div>
 
                                 

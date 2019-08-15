@@ -29,3 +29,8 @@ img{width:100%;height:200px;}
     border: 1px solid #fff;
 }
 
+.shareIcon{
+    float:left;
+    margin-top:20px;
+    margin-right:10px;
+}

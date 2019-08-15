@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './Header.css'
-import foodLogo from "./logo.png";
+import foodLogo from "./jslogo.png";
 
 interface IProps{
     open: (event: React.MouseEvent<HTMLButtonElement>) => void
@@ -32,8 +32,8 @@ export default class Header extends React.Component<IProps,IState>{
                 <div className="text-box">
                     <h1>Welcome to FoodRecipe</h1>
                     
-                    <button className="btn btn-full js--scroll-to-plans" onClick={this.props.open}>Online Recipe</button>
-                    <button className="btn btn-ghost js--scroll-to-start" onClick={this.props.openMine}>Show mine</button>
+                    <button className="btn btn-full js--scroll-to-plans color" onClick={this.props.open}>Online Recipe</button>
+                    <button className="btn btn-ghost js--scroll-to-start color" onClick={this.props.openMine}>Show mine</button>
                 </div>
             </div>
         )

@@ -6,7 +6,7 @@ import MyAPI from './Components/myAPI/myAPI'
 // import * as firebase from 'firebase';
 // import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import * as Webcam from "react-webcam";
-import Google from "./Components/googlemap/google"
+// import Google from "./Components/googlemap/google"
 
 
 
@@ -87,7 +87,7 @@ public startOnlineApi = () => {
           <div><Heads open={this.startOnlineApi} openMine={this.startMyApi}/>
             {this.state.openOnlineApi&& <OnlineAPI />}
             {this.state.openMyApi&&<MyAPI auth={this.NoAuthenticate} />}</div>:""}
-            <Google latt={this.state.lat} longg={this.state.long}/>
+        
       </div>
     </div>
        

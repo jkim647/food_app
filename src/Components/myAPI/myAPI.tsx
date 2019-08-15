@@ -9,6 +9,8 @@ import EditRecipeModal from '../myRecipeModal/editRecipeModal'
 import SearchBar_two from '../searchBar_two/searchBar_two'
 // import Loader from 'react-loader-spinner'
 import Backdrop from '../backdrop/backdrop'
+import Loader from '../loading/loading'
+
 interface IProps{
     auth:any
 }
@@ -20,7 +22,8 @@ interface IState{
     openCreateRecipeModal:boolean
     result: any
     loading:boolean
-    
+    spin:boolean
+    close:boolean
   }
 
 class MyAPI extends React.Component<IProps, IState> {
@@ -34,8 +37,10 @@ class MyAPI extends React.Component<IProps, IState> {
          loading: true,
          openCreateRecipeModal:false,
          openEditModal:false,
-         result:''
-        
+         result:'',
+         spin:true,
+         close: true
+         
          
          
         }
@@ -110,7 +115,7 @@ class MyAPI extends React.Component<IProps, IState> {
         fetch('https://foodlove.azurewebsites.net//api/Foods',{method:'GET'}).
         then(res=>res.json())
         .then(json =>{
-            this.setState({lists:json,loading: false})
+            this.setState({lists:json,loading: false, spin:false})
             console.log(this.state.lists)
             
 
@@ -120,8 +125,11 @@ class MyAPI extends React.Component<IProps, IState> {
     }
 
     public deleteRecipe = (id:any)=>{
+        this.setState({spin:true})
       fetch("https://foodlove.azurewebsites.net//api/Foods/" +id,{method:"DELETE"}).then(()=>{
           this.updateList()
+          this.setState({spin:false})
+          
       })
 
     }
@@ -144,7 +152,8 @@ class MyAPI extends React.Component<IProps, IState> {
             method:"GET"
         }).then(response=>response.json()).then(answer =>{
             console.log(answer)
-            this.setState({lists:answer})
+            this.setState({lists:answer, spin:false})
+
         }
         );
         
@@ -164,11 +173,13 @@ class MyAPI extends React.Component<IProps, IState> {
                 
                 <Myrecipe recipeList={this.state.lists} delete={this.deleteRecipe} edit={this.selectCurrentRecipe} />
                 { /* <EditRecipe edit={this.editRecipe} /> */}
-
+                {this.state.spin&&<Loader/>}
                 {this.state.openCreateRecipeModal &&<CreateRecipe add={this.uploadList} close={this.closeCreateRecipe}/>}
-                
+                {this.state.openEditModal && <Backdrop />}
                 {this.state.openEditModal &&<EditRecipeModal editRecipe={this.state.currentRecipe} closeModal={this.closeEditModal} update={this.updateList}/>}
                 {this.state.openEditModal || this.state.openCreateRecipeModal &&<Backdrop />}
+                
+               
                 
 
             </div>

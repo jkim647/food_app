@@ -2,7 +2,7 @@ import * as React from 'react';
 import './onlineRecipe.css'
 import Modal from '../modal/modal'
 import Backdrop from '../backdrop/backdrop'
-import { Twitter, FacebookShareButton } from 'react-social-sharing'
+import {FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon} from 'react-share'
 
 interface IFoodProps{
     recipe:any[];
@@ -13,6 +13,9 @@ interface IState{
     creating: boolean;
     ingredients: [];
     title: string;
+    cals: number;
+    save:boolean;
+
 }
 
 
@@ -23,7 +26,9 @@ class Report extends React.Component<IFoodProps,IState>{
         this.state={
            creating:false, 
            ingredients: [],
-           title:''
+           title:'',
+           cals:0,
+           save:false
 
           
            }
@@ -32,18 +37,31 @@ class Report extends React.Component<IFoodProps,IState>{
         }
         
 
-    public startCreateEvent = (labels:any, titles:any) =>{
+    public startCreateEvent = (labels:any, titles:any, calories:any) =>{
         
          this.setState({creating: true});
          this.setState({ingredients:labels})
          this.setState({title: titles})
+         this.setState({cals: calories})
          
     }
+
+    public saveInMyFolder = (labels:any, titles:any, calories:any) =>{
+        
+        this.setState({save: true});
+        this.setState({ingredients:labels})
+        this.setState({title: titles})
+        this.setState({cals: calories})
+        
+   }
+
     public cancelModalBackdrop = () => {
         this.setState({creating:false})
     }
     
+    
     public render(){
+        
         console.log("rerendering onlineRecipe")
         const recipes= this.props.recipe
         console.log(recipes)
@@ -51,9 +69,11 @@ class Report extends React.Component<IFoodProps,IState>{
             <div>
             {this.state.creating && <Modal ingredients={this.state.ingredients} title={this.state.title} onCancel={this.cancelModalBackdrop}/>}
             <div className="row c">
+            
                 
                 
                 {recipes.map((recipe:any,i) => {
+
                     return (
                        
                         <div key={i} className="col-md-4 c myRecipe">
@@ -69,9 +89,34 @@ class Report extends React.Component<IFoodProps,IState>{
                                     src={recipe.recipe.image} alt={recipe.title}/>
                                 </div>
 
-                                <button className="view" onClick={()=>this.startCreateEvent(recipe.recipe.ingredients, recipe.recipe.label)}>View Recipe</button> 
-                                <Twitter link="https://www.youtube.com/watch?v=0BzWRnP9S4Y"/>
-                                <FacebookShareButton link="https://www.youtube.com/watch?v=0BzWRnP9S4Y" />
+                                <button className="view" onClick={()=>this.startCreateEvent(recipe.recipe.ingredients, recipe.recipe.label, recipe.recipe.calories)}>View Recipe</button> 
+                                <button className="view" onClick={()=>this.startCreateEvent(recipe.recipe.ingredients, recipe.recipe.label, recipe.recipe.calories)}>save in my folder</button>
+                               
+                                <FacebookShareButton
+                                    className="shareIcon"
+                                    url= {recipe.recipe.url}
+                                    quote={recipe.recipe.title}>
+                                    <FacebookIcon
+                                    size="2.5rem"
+                                    
+                                    />
+                                </FacebookShareButton>
+                               
+
+                                
+                                <TwitterShareButton
+                                    className="shareIcon"
+                                    url={recipe.recipe.url}
+                                    title={recipe.recipe.title}
+                                    >
+                                    <TwitterIcon
+                                    size="2.5rem"/>
+                                   
+                                </TwitterShareButton>
+                              
+
+
+                                
                             </div>
                         </div>
                         
