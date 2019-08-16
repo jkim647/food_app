@@ -75,6 +75,7 @@ class MyAPI extends React.Component<IProps, IState> {
    
 
     public uploadList = () => {
+        
       //   const id = document.getElementById("id-input") as HTMLInputElement
         const titleInput = document.getElementById("title") as HTMLInputElement
         const ingredients = document.getElementById("ingredients") as HTMLInputElement
@@ -87,6 +88,7 @@ class MyAPI extends React.Component<IProps, IState> {
         const title = titleInput.value
         const cals = cal.value
         // const ids = id.value 
+        this.setState({spin:true})
        fetch('https://foodlove.azurewebsites.net//api/Foods', {
             body: JSON.stringify({
                 "cal":cals,
@@ -96,6 +98,7 @@ class MyAPI extends React.Component<IProps, IState> {
 
             headers: {'Content-Type': 'application/json'},
             method: 'POST'
+         
         })
         .then((response : any) => {
             if (!response.ok) {
@@ -104,8 +107,10 @@ class MyAPI extends React.Component<IProps, IState> {
                 this.updateList()
                 this.props.auth()
             } else {
+                this.setState({spin:false})
                alert("Done")
                this.componentDidMount()
+               
             }
        })
 
@@ -143,7 +148,8 @@ class MyAPI extends React.Component<IProps, IState> {
         public searchRecipe = async (searchItem:any) => {
         console.log(searchItem)
         this.setState({
-            lists: []
+            lists: [],
+            spin:true
         })
         fetch("https://foodlove.azurewebsites.net//api/Foods/SearchByVideoName/"+ searchItem,{
             headers:{
@@ -173,12 +179,12 @@ class MyAPI extends React.Component<IProps, IState> {
                 
                 <Myrecipe recipeList={this.state.lists} delete={this.deleteRecipe} edit={this.selectCurrentRecipe} />
                 { /* <EditRecipe edit={this.editRecipe} /> */}
-                {this.state.spin&&<Loader/>}
+                
                 {this.state.openCreateRecipeModal &&<CreateRecipe add={this.uploadList} close={this.closeCreateRecipe}/>}
                 {this.state.openEditModal && <Backdrop />}
                 {this.state.openEditModal &&<EditRecipeModal editRecipe={this.state.currentRecipe} closeModal={this.closeEditModal} update={this.updateList}/>}
                 {this.state.openEditModal || this.state.openCreateRecipeModal &&<Backdrop />}
-                
+                {this.state.spin&&<Loader/>}
                
                 
 

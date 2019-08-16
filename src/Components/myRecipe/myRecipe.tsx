@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './myRecipe.css'
+import {FacebookShareButton, FacebookIcon,} from 'react-share'
 
 
 
@@ -53,7 +54,21 @@ class MyRecipe extends React.Component<ILoveprops, IState> {
 
                                 <button className="view" onClick={()=>this.selectRow(i)}>Edit</button> 
                                 <button className="view" onClick={()=>this.props.delete(recipe.foodId)}>Delete</button> 
-                                {}
+                                <FacebookShareButton
+                                    className="shareIcon"
+                                    url= {'https://myfoodrecipe.azurewebsites.net/?fbclid=IwAR05KMrNbs365SMvy10GorgtJHkUpX1tkopYk-u6Y3kmLk9w0zaQGjanB5o'}
+                                    quote={recipe.ingredients}>
+                                    
+                                   
+                                    <FacebookIcon
+                                    size="2.5rem"
+                                    
+                                    />
+                                </FacebookShareButton>
+                               
+
+                                
+                                
                             </div>  
                         </div>
                         

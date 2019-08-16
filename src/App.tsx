@@ -29,7 +29,7 @@ class App extends React.Component<{}, IState>{
     this.state = {
       authenticated:false,
       openMyApi: false,
-      openOnlineApi: true,
+      openOnlineApi: false ,
       predictionResult: null,
       refCamera: React.createRef(),
       lat: 45.421532,

@@ -34,7 +34,7 @@ class OnlineAPI extends React.Component<{}, IState>{
 
             this.setState({inputs:searchItem})
 
-            const response = await fetch(`https://api.edamam.com/search?q=${searchItem}&app_id=${APIID}&app_key=${APIKEY}`);
+            const response = await fetch(`https://api.edamam.com/search?q=${searchItem}&app_id=${APIID}&app_key=${APIKEY}`)
             const data= await response.json();
             console.log(data)
             this.setState({foods:data.hits})
